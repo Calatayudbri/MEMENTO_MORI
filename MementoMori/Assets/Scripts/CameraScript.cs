@@ -4,39 +4,41 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    /* public Transform tr_player;
+    public Transform playerTr_;
     public Transform activeRoom;
+    public float dampSpeed = 3;
 
     public static CameraScript instance;
-    
-    [Range(-5,5)]
-    public float minModX, maxModX, minModY, maxModY; */
-    /* private void Awake()
+    [Range(-5, 5)]
+    public float minModX, maxModX, minModY, maxModY;
+
+    private void Awake() 
     {
-        if(instance == null)
-        {
+        if(instance == null){
             instance = this;
-        }
-    } */
-    // Start is called before the first frame update
+        }   
+    }
+
+  
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        /* var minPosY = activeRoom.GetComponent<BoxCollider2D>().bounds.min.y + minModY;
+        var minPosY = activeRoom.GetComponent<BoxCollider2D>().bounds.min.y + minModY;
         var maxPosY = activeRoom.GetComponent<BoxCollider2D>().bounds.max.y + maxModY;
         var minPosX = activeRoom.GetComponent<BoxCollider2D>().bounds.min.x + minModX;
-        var maxPosX = activeRoom.GetComponent<BoxCollider2D>().bounds.max.x + maxModX; */
+        var maxPosX = activeRoom.GetComponent<BoxCollider2D>().bounds.max.x + maxModX;
 
-        /* Vector3 clampedPos = new Vector3(
-            Mathf.Clamp(tr_player.position.x, minPosX, maxPosX),
-            Mathf.Clamp(tr_player.position.y, minPosY, maxPosY),
-            tr_player.position.z);
+        Vector3 clampedPos = new Vector3(
+            Mathf.Clamp(playerTr_.position.x, minPosX, maxPosX),
+            Mathf.Clamp(playerTr_.position.y, minPosY, maxPosY),
+            Mathf.Clamp(playerTr_.position.z, -10.0f, -10.0f));
 
-        transform.position = new Vector3(clampedPos.x, clampedPos.y, clampedPos.z); */
+        Vector3 smoothPos = Vector3.Lerp(transform.position, clampedPos, dampSpeed * Time.deltaTime);
+        transform.position = smoothPos;
+
     }
 }
