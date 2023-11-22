@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     public float dampSpeed = 3;
 
     public static CameraScript instance;
-    [Range(-5, 5)]
+    [Range(-5, 25)]
     public float minModX, maxModX, minModY, maxModY;
 
     private void Awake() 
