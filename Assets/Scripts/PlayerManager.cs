@@ -7,12 +7,11 @@ public class PlayerManager : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 10f;
     public LayerMask groundLayer;
-
     private Rigidbody2D rb;
     // private Animator anim;
     private bool isGrounded;
     private bool canJump = true;
-
+    private float startTime;
   public Animator anim_;
 
   void Start()
@@ -39,8 +38,12 @@ public class PlayerManager : MonoBehaviour
             anim_.SetBool("isGrounded", false);
         }
 
+        Attack();
+        
         // UpdateAnimation(horizontalInput);
     }
+
+  
 
     void Move(float horizontalInput)
     {
@@ -62,13 +65,25 @@ public class PlayerManager : MonoBehaviour
 
   }
 
+    public void Attack()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+        anim_.SetBool("attack",true);
+
+        }else{
+      anim_.SetBool("attack", false);
+    }
+    }
+
+
     void FlipCharacter(float horizontalInput)
     {
-        if (horizontalInput > 0)
+        if (rb.velocity.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (horizontalInput < 0)
+        else if (rb.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
