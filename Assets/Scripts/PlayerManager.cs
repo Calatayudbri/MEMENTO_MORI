@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 1.0f;
     public float jumpForce = 10f;
     public LayerMask groundLayer;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     // private Animator anim;
     private bool isGrounded;
     private bool canJump = true;
     private float startTime;
   public Animator anim_;
 
-  void Start()
+    public bool canMove_left = true;
+    public bool canMove_right = true;
+
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         // anim = GetComponent<Animator>();
@@ -23,9 +26,10 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         CheckGrounded();
+       
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Move(horizontalInput);
+        Move();
+        
 
         if (Input.GetButtonDown("Jump") && isGrounded && canJump)
         {
@@ -45,11 +49,15 @@ public class PlayerManager : MonoBehaviour
 
   
 
-    void Move(float horizontalInput)
+    void Move()
     {
-        Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
-        rb.velocity = movement;
-        FlipCharacter(horizontalInput);
+        if (Input.GetKey(KeyCode.D))
+         { this.transform.position += Vector3.right * speed * Time.deltaTime; }
+        if (Input.GetKey(KeyCode.A))
+         { this.transform.position += Vector3.left * speed * Time.deltaTime; }
+        // Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
+        // rb.velocity = movement;
+        FlipCharacter();
     if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
     {
         anim_.SetBool("Running",true);
@@ -77,13 +85,13 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    void FlipCharacter(float horizontalInput)
+    void FlipCharacter()
     {
-        if (rb.velocity.x > 0)
+        if (Input.GetKeyDown(KeyCode.D))
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (rb.velocity.x < 0)
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -97,13 +105,6 @@ public class PlayerManager : MonoBehaviour
         {
             canJump = true;
         }
-            
-    
     }
-
-    // void UpdateAnimation(float horizontalInput)
-    // {
-    //     anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
-    //     anim.SetBool("IsGrounded", isGrounded);
-    // }
+   
 }
