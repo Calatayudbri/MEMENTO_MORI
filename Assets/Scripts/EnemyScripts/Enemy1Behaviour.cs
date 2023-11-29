@@ -8,15 +8,31 @@ public class Enemy1Behaviour : MonoBehaviour
   public float speed;
   public float knockBackForceX;
   public float knockBackForceY;
-    // Start is called before the first frame update
+  public float leftBound = -5f; 
+  public float rightBound = 5f;
+
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
+
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        if (transform.position.x >= rightBound)
+        {
+            transform.position = new Vector2(rightBound, transform.position.y);
+            speed = -speed;
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        if (transform.position.x <= leftBound)
+        {
+            transform.position = new Vector2(leftBound, transform.position.y);
+            speed = -speed;
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+
+        }
         
     }
 }

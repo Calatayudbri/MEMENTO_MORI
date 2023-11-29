@@ -15,12 +15,12 @@ public class EnemyHealth : MonoBehaviour
     sp = GetComponent<SpriteRenderer>();
     rb = GetComponent<Rigidbody2D>();
     blink = GetComponent<EnemyBlink>();
-    enemy = GetComponent<Enemy1Behaviour>();
+    /* enemy = GetComponent<Enemy1Behaviour>(); */
   }
 
-  private void OnTriggerEnter2D(Collider2D collision)
+  void OnTriggerEnter2D(Collider2D collision)
   {
-    if(collision.CompareTag("Player_weapon") )
+    if(collision.CompareTag("Player_weapon") && !isDamage)
     {
       enemy.healthPoints -= 1;
       if(collision.transform.position.x < transform.position.x)
@@ -43,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
     isDamage = true;
     sp.material = blink.blink;
 
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0.2f);
     isDamage = false;
 
     sp.material = blink.original;
