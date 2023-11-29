@@ -821,6 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed58701b51844f74dbf9178ad04a5d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 38136124}
   isDamage: 0
 --- !u!114 &38136124
 MonoBehaviour:
@@ -834,10 +835,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f25a799312b6704ab0997dc9085a68d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 0
-  speed: 0
-  knockBackForceX: 0
-  knockBackForceY: 0
+  healthPoints: 5
+  speed: 2
+  knockBackForceX: 5.05
+  knockBackForceY: 1
 --- !u!114 &38136125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10227,6 +10228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677069557}
   - component: {fileID: 677069558}
+  - component: {fileID: 677069559}
   m_Layer: 6
   m_Name: weapon_hitbox
   m_TagString: Player_weapon
@@ -10256,11 +10258,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677069556}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.29411745, y: 0.4120636, z: 1}
   m_Center: {x: 0.18457556, y: 0.002028942, z: 0}
+--- !u!114 &677069559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677069556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475d939ea2b107f459843620bd300ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &685532215
 GameObject:
   m_ObjectHideFlags: 0

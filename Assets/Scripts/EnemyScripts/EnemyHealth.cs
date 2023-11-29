@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-  Enemy1Behaviour enemy;
+  public Enemy1Behaviour enemy;
 
   public bool isDamage;
   SpriteRenderer sp;
@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
-    if(collision.CompareTag("Player_weapon") && !isDamage)
+    if(collision.CompareTag("Player_weapon") )
     {
       enemy.healthPoints -= 1;
       if(collision.transform.position.x < transform.position.x)
